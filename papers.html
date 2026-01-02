@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Publications — Cherif</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="script.js"></script>
+    </head>
+
+    <body>
+        <header class="header">
+            <nav class="nav" aria-label="Primary">
+                <div class="nav-inner">
+                    <a class="logo" href="#top">Cherif.</a>
+                    <ul class="nav-list">
+                        <li><a href="index.html#top">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#skills">Skills</a></li>
+
+                        <li class="nav-dropdown">
+                            <button
+                                class="nav-dropdown-trigger"
+                                type="button"
+                                id="pubTrigger"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                            >
+                                Publications <span class="caret">▾</span>
+                            </button>
+
+                            <ul class="nav-dropdown-menu" id="pubMenu">
+                                <li><a href="papers.html#papers">Papers</a></li>
+                                <li>
+                                    <a href="papers.html#reading"
+                                        >Reading List</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="papers.html#bookshelf"
+                                        >Bookshelf</a
+                                    >
+                                </li>
+                                <li><a href="papers.html#blog">Blog</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+
+                    <a class="nav-cta" href="#contact">Email me</a>
+                </div>
+            </nav>
+        </header>
+        <main class="main">
+            <section class="reveal" id="top">
+                <h1 class="section-title">Publications</h1>
+                <p class="section-subtitle">
+                    Blog posts, papers, and short updates.
+                </p>
+            </section>
+
+            <section class="reveal" id="blog">
+                <h2 class="section-title">Blog</h2>
+                <div class="pub-list">
+                    <article class="pub-item reveal" data-id="blog-1">
+                        <div class="pub-main">
+                            <h3 class="pub-title">Coming soon</h3>
+                            <p class="pub-desc">Draft notes, in progress...</p>
+                            <div class="pub-meta">
+                                <span class="pub-pill">ML</span>
+                                <span class="pub-pill">Robotics</span>
+                                <span class="pub-pill">Research</span>
+                                <span class="pub-date">2026</span>
+                            </div>
+                        </div>
+
+                        <button
+                            class="pub-react"
+                            type="button"
+                            aria-label="React"
+                        >
+                            <span class="pub-react-hint" aria-hidden="true"
+                                >👉 Tap</span
+                            >
+                            <span class="pub-react-icon">✦</span>
+                            <span class="pub-react-count">0</span>
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="reveal" id="papers">
+                <h2 class="section-title">Papers</h2>
+                <div class="pub-list">
+                    <article class="pub-item reveal" data-id="paper-1">
+                        <div class="pub-main">
+                            <h3 class="pub-title">
+                                Title of my paper (coming soon)
+                            </h3>
+                            <p class="pub-desc">
+                                Short abstract/summary goes here.
+                            </p>
+                            <div class="pub-meta">
+                                <span class="pub-pill">PDF</span>
+                                <span class="pub-pill">AI</span>
+                                <span class="pub-date">2026</span>
+                            </div>
+                        </div>
+
+                        <button
+                            class="pub-react"
+                            type="button"
+                            aria-label="React"
+                        >
+                            <span class="pub-react-icon">✦</span>
+                            <span class="pub-react-count">0</span>
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="reveal" id="posts">
+                <h2 class="section-title">Posts</h2>
+                <div class="pub-links">
+                    <a
+                        class="pub-link-card reveal"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <h3>X (Twitter)</h3>
+                        <p>Short thoughts & updates</p>
+                    </a>
+
+                    <a
+                        class="pub-link-card reveal"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <h3>Medium</h3>
+                        <p>Long-form writing</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">© <span id="year"></span> Cherif.</p>
+        </footer>
+    </body>
+</html>

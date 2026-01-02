@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Portfolio Launch</title>
+        <style>
+            :root {
+                --bg: #070b14;
+                --t: #e9ecf6;
+                --m: rgba(233, 236, 246, 0.72);
+                --b: rgba(255, 255, 255, 0.12);
+                --g: rgba(10, 14, 25, 0.55);
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: grid;
+                place-items: center;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Arial,
+                    sans-serif;
+                color: var(--t);
+                background:
+                    radial-gradient(
+                        900px 600px at 70% 20%,
+                        rgba(124, 108, 255, 0.18),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        700px 500px at 20% 35%,
+                        rgba(0, 200, 255, 0.1),
+                        transparent 60%
+                    ),
+                    var(--bg);
+            }
+            .wrap {
+                width: min(960px, 92%);
+                display: grid;
+                gap: 14px;
+            }
+            .card {
+                padding: 26px 22px;
+                border-radius: 18px;
+                border: 1px solid var(--b);
+                background: var(--g);
+                backdrop-filter: blur(12px);
+                position: relative;
+                overflow: hidden;
+            }
+            .top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+            }
+            .brand {
+                font-weight: 900;
+                letter-spacing: -0.02em;
+            }
+            .pill {
+                padding: 8px 12px;
+                border-radius: 999px;
+                border: 1px solid var(--b);
+                background: rgba(255, 255, 255, 0.06);
+                font-weight: 800;
+                font-size: 0.92rem;
+                color: rgba(233, 236, 246, 0.92);
+            }
+            h1 {
+                margin: 14px 0 8px;
+                font-size: clamp(2rem, 4.6vw, 3.4rem);
+                letter-spacing: -0.04em;
+                line-height: 1.05;
+            }
+            .glow {
+                font-weight: 950;
+                text-shadow:
+                    0 0 18px rgba(124, 108, 255, 0.28),
+                    0 0 40px rgba(0, 200, 255, 0.1);
+            }
+            p {
+                margin: 0;
+                color: var(--m);
+                max-width: 62ch;
+            }
+            .in {
+                animation: in 0.7s ease both;
+            }
+            @keyframes in {
+                from {
+                    opacity: 0;
+                    transform: translateY(8px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .contact {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .contact .left {
+                display: grid;
+                gap: 2px;
+            }
+            .contact small {
+                color: rgba(233, 236, 246, 0.6);
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 12px;
+                border-radius: 14px;
+                border: 1px solid var(--b);
+                background: rgba(255, 255, 255, 0.06);
+                color: var(--t);
+                text-decoration: none;
+                font-weight: 850;
+                transition:
+                    transform 0.15s ease,
+                    background 0.15s ease,
+                    border-color 0.15s ease;
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+                background: rgba(255, 255, 255, 0.09);
+                border-color: rgba(255, 255, 255, 0.18);
+            }
+            .btn:active {
+                transform: translateY(0) scale(0.98);
+            }
+            .icon {
+                width: 18px;
+                height: 18px;
+                display: block;
+                opacity: 0.95;
+            }
+
+            .shine::before {
+                content: "";
+                position: absolute;
+                inset: -40% -20%;
+                background: linear-gradient(
+                    115deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.07) 28%,
+                    transparent 52%
+                );
+                transform: translateX(-45%);
+                animation: shine 6.2s ease-in-out infinite;
+                pointer-events: none;
+            }
+            @keyframes shine {
+                0% {
+                    transform: translateX(-45%);
+                }
+                50% {
+                    transform: translateX(10%);
+                }
+                100% {
+                    transform: translateX(-45%);
+                }
+            }
+
+            .toast {
+                position: fixed;
+                left: 50%;
+                bottom: 18px;
+                transform: translateX(-50%);
+                padding: 10px 12px;
+                border-radius: 999px;
+                background: rgba(10, 14, 25, 0.78);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                backdrop-filter: blur(12px);
+                opacity: 0;
+                pointer-events: none;
+                font-weight: 900;
+            }
+            .toast.on {
+                animation: t 1.2s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+            }
+            @keyframes t {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(10px);
+                }
+                18% {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+                82% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-10px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="wrap">
+            <section class="card in">
+                <div class="top">
+                    <div class="brand">Cherif.</div>
+                    <div class="pill" id="pill">Countdown</div>
+                </div>
+
+                <h1>
+                    Launching in <span class="glow" id="countdown">--</span>.
+                </h1>
+                <p>
+                    Official portfolio release — About, Projects, Skills,
+                    Researches.
+                </p>
+            </section>
+
+            <section class="card shine in" style="animation-delay: 0.08s">
+                <div class="contact">
+                    <div class="left">
+                        <div style="font-weight: 950; letter-spacing: -0.02em">
+                            Want to reach out?
+                        </div>
+                        <small id="emailText"
+                            >Email: cherifathiaw@gmail.com</small
+                        >
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn" id="copyBtn" type="button">
+                            Copy email
+                        </button>
+
+                        <a
+                            class="btn"
+                            id="ghLink"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub"
+                        >
+                            <svg
+                                class="icon"
+                                viewBox="0 0 16 16"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M12 .6a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.2-.8.1-.8.1-.8 1.3.1 2 .1 2 .1 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.8-1.7-2.6-.3-5.4-1.3-5.4-6a4.6 4.6 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.2s1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.7.1 3.2a4.6 4.6 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.3v3.4c0 .3.2.7.8.6A11.4 11.4 0 0 0 12 .6Z"
+                                />
+                            </svg>
+                            GitHub
+                        </a>
+
+                        <a
+                            class="btn"
+                            id="mdLink"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Medium"
+                        >
+                            <svg
+                                class="icon"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M4.2 7.2a1.1 1.1 0 0 0-.4-1L2.7 4.9V4.3h6.6l5.1 11.2 4.5-11.2H24v.6l-1 .9a.9.9 0 0 0-.3.8v12.8a.9.9 0 0 0 .3.8l1 .9v.6h-6.7v-.6l1.1-.9c.1-.1.1-.3.1-.8V8.7l-5.3 13.2h-.7L6.4 8.7v8.9c-.1.5.1 1 .5 1.4l1.4 1.7v.6H3.9v-.6l1.4-1.7c.4-.4.6-1 .5-1.4V7.2Z"
+                                />
+                            </svg>
+                            Medium
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="toast" id="toast"></div>
+
+        <script>
+            const LAUNCH_ISO = "2026-01-31T20:00:00-04:00"; // Moncton (AST) — change this to your real launch time
+            const EMAIL = "cherifathiaw@gmail.com";
+            const GITHUB_URL = "https://github.com/CherifThiaw";
+            const MEDIUM_URL = "https://github.com/CherifThiaw";
+
+            const cd = document.getElementById("countdown");
+            const pill = document.getElementById("pill");
+            const toastEl = document.getElementById("toast");
+            const emailText = document.getElementById("emailText");
+            const copyBtn = document.getElementById("copyBtn");
+            const ghLink = document.getElementById("ghLink");
+            const mdLink = document.getElementById("mdLink");
+
+            emailText.textContent = `Email: ${EMAIL}`;
+            ghLink.href = GITHUB_URL;
+            mdLink.href = MEDIUM_URL;
+
+            const pad = (n) => String(n).padStart(2, "0");
+            const target = new Date(LAUNCH_ISO);
+
+            const toast = (msg) => {
+                toastEl.textContent = msg;
+                toastEl.classList.remove("on");
+                void toastEl.offsetWidth;
+                toastEl.classList.add("on");
+            };
+
+            copyBtn.addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(EMAIL);
+                    toast("Email copied ✦");
+                } catch {
+                    toast("Copy failed");
+                }
+            });
+
+            function tick() {
+                const ms = target - new Date();
+                if (ms <= 0) {
+                    cd.textContent = "LIVE";
+                    pill.textContent = "LIVE ✦";
+                    return;
+                }
+                const d = Math.floor(ms / 86400000);
+                const h = Math.floor((ms % 86400000) / 3600000);
+                const m = Math.floor((ms % 3600000) / 60000);
+                const s = Math.floor((ms % 60000) / 1000);
+                cd.textContent = `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+                pill.textContent = `T-${d} days`;
+                requestAnimationFrame(tick);
+            }
+            tick();
+        </script>
+    </body>
+</html>

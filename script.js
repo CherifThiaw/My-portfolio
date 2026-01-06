@@ -464,7 +464,7 @@ function startMatrix() {
   };
 
   draw();
-  matrixToast("Matrix mode unlocked");
+  matrixToast("Matrix mode unlocked");  //Togger the animation need to fix style(better if it pops from the bottom)
 
   const stop = () => {
     cancelAnimationFrame(rafId);
